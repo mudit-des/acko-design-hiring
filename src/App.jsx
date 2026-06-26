@@ -356,7 +356,7 @@ export default function App() {
     });
     const body = { model: "claude-sonnet-4-6", max_tokens: 1200, system: sys, messages: apiMsgs };
     if (b64) body.betas = ["pdfs-2024-09-25"];
-    const res = await fetch("https://api.anthropic.com/v1/messages", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+    const res = await fetch("/api/chat", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
     const data = await res.json();
     return data.content?.find(b => b.type === "text")?.text || "Something went wrong.";
   };
